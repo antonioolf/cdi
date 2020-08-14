@@ -11,7 +11,7 @@ print_folders() {
     # $1 = current_dir
     # $2 = current_selection
 
-    echo ">> $1 $2 <<"
+    echo "Debug >> $1 $2 <<"
 
     array=($(ls -p $1 | grep /))
     for i in "${!array[@]}"; do
