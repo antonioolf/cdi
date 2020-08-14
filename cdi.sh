@@ -39,7 +39,7 @@ get_selected_folder() {
 }
 
 print_instructions() {
-    echo -e '\nUse arrows to move ↑ ↓ ← →\n'
+    echo -e '\n* Use arrows to move ↑ ↓ ← →\n * Press enter to copy directory path to clipboard and exit, then press ctrl + shift + v in your terminal to paste \n'
 }
 ###############################################################
 
