@@ -1,6 +1,9 @@
-Change Dir Interactively
+# CDI - Change directory interactively
 
-## Install cd2
+Don't waste more time in the terminal browsing folders with CD
+
+## Installation
+
 ```bash
 git clone ....
 cd folder ...
@@ -9,7 +12,12 @@ sudo cp cdi.sh /usr/local/bin/cdi
 sudo ln -s /usr/local/bin/cdi /usr/bin/cdi
 ```
 
-## Use
-```bash
-cdi
-```
+## Usage
+
+Just type `cdi`
+
+## Contributing
+Pull requests are welcome!
+
+## License
+TODO: Choose the correct license :P
