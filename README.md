@@ -23,4 +23,4 @@ Just type `cdi`
 Pull requests are welcome!
 
 ## License
-TODO: Choose the correct license :P
+[MIT](https://opensource.org/licenses/MIT)
