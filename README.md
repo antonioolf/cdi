@@ -12,4 +12,4 @@ sudo ln -s /usr/local/bin/cdi /usr/bin/cdi
 ## Use
 ```bash
 cdi
-```bash
+```
