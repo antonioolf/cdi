@@ -3,25 +3,32 @@
 # CDI - Change Dir Interactively
 # Don't waste more time in the terminal browsing folders with CD
 
-# TODO: Change directory
-
-##################### Functions ################################
+# TODO list
+# - Abstract stylization of text in functions
 
 print_folders() {
     # $1 = current_dir
     # $2 = current_selection
 
-    echo "Debug >> $1 $2 <<"
-
+    # List files and filter only those ending with "/"
     array=($(ls -p $1 | grep /))
-    for i in "${!array[@]}"; do
-        if test "$i" -eq $2
-        then
-            echo "→ ${array[i]}"
-        else
-            echo "  ${array[i]}"
-        fi
-    done
+
+    if [ "${#array[@]}" -ne 0 ]; then
+        for i in "${!array[@]}"; do
+            if test "$i" -eq $2; then
+                echo -e "\033[1m→ ${array[i]}\033[0m"
+            else
+                echo "  ${array[i]}"
+            fi
+        done
+    else
+        echo -e 'No folders here, press \033[1m←\033[0m to back'
+    fi
+}
+
+print_status() {
+    echo -e "[ \033[1m$1\033[0m ]\n"
+    #echo -e "Selection $2 \n"
 }
 
 get_selected_folder() {
@@ -33,58 +40,62 @@ get_selected_folder() {
 
         if test "$i" -eq $2
         then
-            selected_folder=${array[i]}
+            selected_folder=${array[i]::-1}
         fi
     done
 }
 
 print_instructions() {
-    echo -e '\n* Use arrows to move ↑ ↓ ← →\n * Press enter to copy directory path to clipboard and exit, then press ctrl + shift + v in your terminal to paste \n'
+    echo -e '\n* Use arrows to move ← → ↑ ↓\n* Press enter to copy directory path to clipboard and exit, then press ctrl + shift + v in your terminal to paste \n'
 }
-###############################################################
 
-# Initial values
-current_dir=$(pwd)
-current_selection=0
+init() {
+    # Initial values
+    current_dir=$(pwd)
+    current_selection=0
 
-# Hide cursor
-tput civis
+    # Hide cursor
+    # tput civis
 
-# Initial instructions
-clear
-
-escape_char=$(printf "\u1b")
-while 
-    print_instructions
-    print_folders $current_dir $current_selection
-    read -rsn1 mode
     clear
-    do
 
-    if [[ $mode == $escape_char ]]; then
-        read -rsn2 mode # read 2 more chars
-    fi
+    escape_char=$(printf "\u1b")
+    while 
+        # print_instructions
+        print_status $current_dir $current_selection
+        print_folders $current_dir $current_selection
 
-    echo $mode
+        read -rsn1 mode
+        clear
+        do
 
-    case $mode in
-        'q') echo QUITTING ; exit ;;
-        '[A') current_selection=$((current_selection-1)) ;; # UP
-        '[B') current_selection=$((current_selection+1)) ;; # DOWN
-        
-        '[D') # LEFT
-            current_dir="$current_dir/.."
-            current_selection=0
-        ;; 
-        
-        '[C') # RIGHT
-            get_selected_folder $current_dir $current_selection
-            current_dir="$current_dir/$selected_folder"
-            current_selection=0
-        ;;
+        if [[ $mode == $escape_char ]]; then
+            read -rsn2 mode
+        fi
 
-        *) >&2 
-            echo 'saindo...'; 
-            return ;;
-    esac
-done
+        # echo $mode
+        case $mode in
+            '[A') current_selection=$((current_selection-1)) ;; # UP
+            '[B') current_selection=$((current_selection+1)) ;; # DOWN
+            
+            '[D') # LEFT
+                # Removes the last path level
+                current_dir=${current_dir%/*}
+                current_selection=0
+            ;; 
+            
+            '[C') # RIGHT
+                get_selected_folder $current_dir $current_selection
+                current_dir="$current_dir/$selected_folder"
+                current_selection=0
+            ;;
+
+            *) >&2 
+                # Sends current directory to the clipboard
+                echo -n "cd $current_dir" | xclip -sel clip
+                exit ;;
+        esac
+    done
+}
+
+init
