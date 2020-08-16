@@ -5,6 +5,7 @@
 
 # TODO list
 # - Abstract stylization of text in functions
+# - Add more comments
 
 print_folders() {
     # $1 = current_dir
