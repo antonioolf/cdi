@@ -1,11 +1,16 @@
 #!/bin/bash
-
+#
 # CDI - Change Dir Interactively
 # Don't waste more time in the terminal browsing folders with CD
 
 # TODO list
-# - Abstract stylization of text in functions
-# - Add more comments
+# - [Bug] Back to first selection position when reach the end of folders list and vice versa
+# - [Bug] Fix problem with spaced names in folders
+#
+# - [Improvement] Filter folders by typing keyboard letters
+# - [Improvement] Abstract stylization of text in functions
+# - [Improvement] Add more comments
+#
 
 print_folders() {
     # $1 = current_dir
@@ -87,12 +92,11 @@ init() {
             ;;
 
             *) >&2 
-                # Sends current directory to the clipboard
-                echo -n "cd $current_dir" | xclip -sel clip
                 # Change to directory
+                #   As the script was invoked through the source command (. ./Script) we are still in the same Shell instance, 
+                #   so it is possible to execute the CD command and thus change the directory.
                 cd "$current_dir"
-                exec bash
-                exit ;;
+                return
         esac
     done
 }
