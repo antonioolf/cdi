@@ -46,10 +46,6 @@ get_selected_folder() {
     done
 }
 
-print_instructions() {
-    echo -e '\n* Use arrows to move ← → ↑ ↓\n* Press enter to copy directory path to clipboard and exit, then press ctrl + shift + v in your terminal to paste \n'
-}
-
 init() {
     # Initial values
     current_dir=$(pwd)
@@ -62,7 +58,6 @@ init() {
 
     escape_char=$(printf "\u1b")
     while 
-        # print_instructions
         print_status $current_dir $current_selection
         print_folders $current_dir $current_selection
 
