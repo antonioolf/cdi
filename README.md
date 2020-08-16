@@ -20,7 +20,7 @@ sudo ln -s /usr/local/bin/cdi /usr/bin/cdi
 Just type `cdi`
 
 ## Contributing
-Pull requests are welcome!
+Pull requests and issues are welcome!
 
 ## License
 [MIT](https://opensource.org/licenses/MIT)
