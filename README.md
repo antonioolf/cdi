@@ -5,7 +5,7 @@ Change Dir Interactively
 git clone ....
 cd folder ...
 chmod +x cdi.sh
-cp cdi.sh /usr/local/bin/cd2
+sudo cp cdi.sh /usr/local/bin/cdi
 sudo ln -s /usr/local/bin/cdi /usr/bin/cdi
 ```
 
