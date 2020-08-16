@@ -2,6 +2,9 @@
 
 Don't waste more time in the terminal browsing folders with CD
 
+![CDI in action](gif.gif)
+
+
 ## Installation
 
 ```bash
