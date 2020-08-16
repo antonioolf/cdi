@@ -94,6 +94,9 @@ init() {
             *) >&2 
                 # Sends current directory to the clipboard
                 echo -n "cd $current_dir" | xclip -sel clip
+                # Change to directory
+                cd "$current_dir"
+                exec bash
                 exit ;;
         esac
     done
