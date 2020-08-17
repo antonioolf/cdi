@@ -100,7 +100,7 @@ init() {
                 # Change to directory
                 #   Since script was invoked through the source command (. ./Script) we are still in the same Shell instance, 
                 #   so it is possible to execute the CD command and thus change the directory.
-                cd "$current_dir"
+                cd "$current_dir" || exit
                 return
         esac
     done
