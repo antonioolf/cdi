@@ -1,5 +1,5 @@
 
-# CDI - Change directory interactively
+# CDI - Change directory interactive
 
 Don't waste more time in the terminal browsing folders with CD
 
