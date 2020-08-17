@@ -9,6 +9,7 @@ print_folders() {
 
     # List files and filter only those ending with "/"
     array=($(ls -p $1 | grep /))
+    folders_list_size=$((${#array[@]}-1))
 
     if [ "${#array[@]}" -ne 0 ]; then
         for i in "${!array[@]}"; do
@@ -47,9 +48,6 @@ init() {
     current_dir=$(pwd)
     current_selection=0
 
-    # Hide cursor
-    # tput civis
-
     clear
 
     escape_char=$(printf "\u1b")
@@ -61,28 +59,44 @@ init() {
         clear
         do
 
-        if [[ $mode == $escape_char ]]; then
+        if [[ $mode == "$escape_char" ]]; then
             read -rsn2 mode
         fi
 
         # echo $mode
         case $mode in
-            '[A') current_selection=$((current_selection-1)) ;; # UP
-            '[B') current_selection=$((current_selection+1)) ;; # DOWN
+            '[A') # UP
+                                
+                if [ "$current_selection" -eq 0 ]; then
+                    current_selection=$folders_list_size
+                else
+                  current_selection=$((current_selection-1))
+                fi
+
+                ;;
+            '[B') # DOWN
+
+                if [ "$current_selection" -eq "$folders_list_size" ]; then
+                  current_selection=0
+                else
+                  current_selection=$((current_selection+1))
+                fi
+
+                ;; 
             
             '[D') # LEFT
                 # Removes the last path level
                 current_dir=${current_dir%/*}
                 current_selection=0
-            ;; 
+                ;;
             
             '[C') # RIGHT
                 get_selected_folder $current_dir $current_selection
                 current_dir="$current_dir/$selected_folder"
                 current_selection=0
-            ;;
+                ;;
 
-            *) >&2 
+            *)
                 # Change to directory
                 #   Since script was invoked through the source command (. ./Script) we are still in the same Shell instance, 
                 #   so it is possible to execute the CD command and thus change the directory.
