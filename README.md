@@ -2,18 +2,23 @@
 
 Don't waste more time in the terminal browsing folders with CD
 
-![CDI in action](gif.gif)
-
+![CDI in action](img/gif.gif)
 
 ## Installation
 
+#### Automatic installer
+
+Copy paste and run in your terminal
 ```bash
-git clone ....
-cd folder ...
-chmod +x cdi.sh
-sudo cp cdi.sh /usr/local/bin/cdi
-sudo ln -s /usr/local/bin/cdi /usr/bin/cdi
+curl -fsSL https://raw.githubusercontent.com/antonioolf/cdi/master/install.sh | bash
 ```
+
+#### Manual installation
+The installation process is quite simple, and can be done manually with just two steps.
+
+- Download the main CDI script `cdi.sh` and place it in the `/usr/local/bin` directory (or any other of your choice).
+- Add an alias for the script to your `.bashrc` file. Important: the alias must be defined exactly as mentioned for the CDI to work correctly.
+- Run `source ~/.bashrc` for the change to take effect
 
 ## Usage
 
