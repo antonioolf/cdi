@@ -84,7 +84,7 @@ init() {
 
             *) >&2 
                 # Change to directory
-                #   As the script was invoked through the source command (. ./Script) we are still in the same Shell instance, 
+                #   Since script was invoked through the source command (. ./Script) we are still in the same Shell instance, 
                 #   so it is possible to execute the CD command and thus change the directory.
                 cd "$current_dir"
                 return
