@@ -21,7 +21,7 @@ install() {
     sudo chmod +x "$INSTALL_PATH/cdi.sh"
 
     # Appends alias for cdi execution in .bashrc file and source it
-    echo "alias cdi='. ~/Documents/shell/cdi/cdi.sh'" >> ~/.bashrc
+    echo "alias cdi='. $INSTALL_PATH/cdi.sh'" >> ~/.bashrc
     . ~/.bashrc
 }
 

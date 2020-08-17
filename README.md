@@ -17,7 +17,11 @@ curl -fsSL https://raw.githubusercontent.com/antonioolf/cdi/master/install.sh | 
 The installation process is quite simple, and can be done manually with just two steps.
 
 - Download the main CDI script `cdi.sh` and place it in the `/usr/local/bin` directory (or any other of your choice).
-- Add an alias for the script to your `.bashrc` file. Important: the alias must be defined exactly as mentioned for the CDI to work correctly.
+- Add an alias for the script to your .bashrc file as follows:
+```bash
+alias cdi='. /usr/local/bin/cdi.sh'
+```
+
 - Run `source ~/.bashrc` for the change to take effect
 
 ## Usage
