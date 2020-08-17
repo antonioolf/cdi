@@ -3,15 +3,6 @@
 # CDI - Change Dir Interactively
 # Don't waste more time in the terminal browsing folders with CD
 
-# TODO list
-# - [Bug] Back to first selection position when reach the end of folders list and vice versa
-# - [Bug] Fix problem with spaced names in folders
-#
-# - [Improvement] Filter folders by typing keyboard letters
-# - [Improvement] Abstract stylization of text in functions
-# - [Improvement] Add more comments
-#
-
 print_folders() {
     # $1 = current_dir
     # $2 = current_selection
