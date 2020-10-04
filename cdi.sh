@@ -3,6 +3,10 @@
 # CDI - Change Dir Interactively
 # Don't waste more time in the terminal browsing folders with CD
 
+# change field separator to new-line to easily handle spaces in folder names.
+# To revert back to default space seperator, use `unset IFS` where required
+IFS=$'\n'
+
 # helper function to colorize terminal text
 color_print() {
     # function call syntax
