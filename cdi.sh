@@ -134,7 +134,7 @@ init() {
 
         # echo $mode
         case $mode in
-            '[A') # UP
+            '[A'|k) # UP
                                 
                 if [ "$current_selection" -eq 0 ]; then
                     current_selection=$folders_list_size
@@ -143,7 +143,7 @@ init() {
                 fi
 
                 ;;
-            '[B') # DOWN
+            '[B'|j) # DOWN
 
                 if [ "$current_selection" -eq "$folders_list_size" ]; then
                   current_selection=0
@@ -153,13 +153,13 @@ init() {
 
                 ;; 
             
-            '[D') # LEFT
+            '[D'|h) # LEFT
                 # Removes the last path level
                 current_dir=${current_dir%/*}
                 current_selection=0
                 ;;
             
-            '[C') # RIGHT
+            '[C'|l) # RIGHT
                 get_selected_folder $current_dir $current_selection
                 current_dir="$current_dir/$selected_folder"
                 current_selection=0
