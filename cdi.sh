@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # CDI - Change Dir Interactively
 # Don't waste more time in the terminal browsing folders with CD
